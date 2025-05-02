@@ -1,0 +1,26 @@
+/* public/style.css */
+
+/* make body fill the screen */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* center everything */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* vertical centering */
+    align-items: center;        /* horizontal centering */
+    text-align: center;         /* center text */
+    padding: 2rem 1rem;         /* breathing room */
+    background-color: black;  /* matches your dark background */
+    color: white;             /* white text */
+  }
+  
+  /* constrain width so lines aren’t too long */
+  .container {
+    max-width: 800px;
+    width: 100%;
+  }
+  
