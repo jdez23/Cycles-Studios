@@ -43,3 +43,4 @@ next-env.d.ts
 # .gitignore
 *.mov
 public/video/
+.env.local
