@@ -56,7 +56,7 @@ export default function Carousel({ slides = [] }) {
                             alignItems: "center",
                             justifyContent: "center",
                             boxSizing: "border-box",
-                            padding: "2rem",
+                            padding: "6rem",
                         }}
                     >
                         {/* VIDEO SLIDE */}
@@ -227,7 +227,7 @@ export default function Carousel({ slides = [] }) {
                     cursor: "pointer",
                 }}
             >
-                <img src="logo/leftarrow.png" alt="Prev" style={{ width: 28, height: 28 }} />
+                <img src="logo/leftarrow.png" alt="Prev" style={{ width: 32, height: 32 }} />
             </button>
             <button
                 onClick={next}
@@ -241,7 +241,7 @@ export default function Carousel({ slides = [] }) {
                     cursor: "pointer",
                 }}
             >
-                <img src="logo/rightarrow.png" alt="Next" style={{ width: 28, height: 28 }} />
+                <img src="logo/rightarrow.png" alt="Next" style={{ width: 32, height: 32 }} />
             </button>
 
             {/* DOT INDICATOR */}

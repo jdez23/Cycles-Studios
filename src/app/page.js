@@ -36,12 +36,12 @@ export default function HomePage() {
   // Product1 carousel slides
   const productSlides = [
     { gradient: "gradient/gradient2.svg", imgSrc: "product/cycles1.png", lines: ["cycles","every adventure","has a playlist","share the","playlist to your","adventure"] },
-    { gradient: "gradient/gradient2.svg", imgSrc: "product/cycles2.png", lines: ["discover the",
-        "perfect playlist",
+    { gradient: "gradient/gradient2.svg", imgSrc: "product/cycles2.png", lines: ["discover",
+        "the perfect playlist",
         "for any mood or moment",
         "and save songs",
         "directly to your spotify"] },
-    { gradient: "gradient/gradient2.svg", imgSrc: "product/cycles3.png", lines: ["find new","friends and","playlist curators","and keep up","with their playlists"] },
+    { gradient: "gradient/gradient2.svg", imgSrc: "product/cycles3.png", lines: ["find","new friends and","playlist curators","and keep up","with their playlists"] },
   ];
 
   return (
@@ -92,7 +92,7 @@ export default function HomePage() {
           transform: "translateX(50%)",
           background: "transparent",
           border: "none",
-          padding: 0,
+          padding: 30,
           cursor: "pointer",
           zIndex: 1000,
         }}>
