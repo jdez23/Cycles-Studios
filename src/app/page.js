@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Carousel from "@/components/Carousel";
+import Image from "next/image";
 
 export default function HomePage() {
   const sections = ["home", "product1"];
@@ -81,11 +82,18 @@ export default function HomePage() {
           cursor: "pointer",
           zIndex: 1000,
         }}>
-          <img src="logo/uparrow.png" alt="Scroll up" style={{ width: "32px", height: "32px" }} />
+          <Image
+          src="/logo/uparrow.png" // add leading slash if it's in the public folder
+          alt="Scroll down"
+          width={32}
+          height={32}
+        />
         </button>
       )}
       {current < sections.length - 1 && (
-        <button onClick={() => scrollTo(current + 1)} style={{
+        <button
+        onClick={() => scrollTo(current + 1)}
+        style={{
           position: "fixed",
           bottom: 20,
           right: "50%",
@@ -95,9 +103,15 @@ export default function HomePage() {
           padding: 30,
           cursor: "pointer",
           zIndex: 1000,
-        }}>
-          <img src="logo/downarrow.png" alt="Scroll down" style={{ width: "32px", height: "32px" }} />
-        </button>
+        }}
+      >
+        <Image
+          src="/logo/downarrow.png" // add leading slash if it's in the public folder
+          alt="Scroll down"
+          width={32}
+          height={32}
+        />
+      </button>
       )}
     </div>
   );

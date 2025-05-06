@@ -31,7 +31,7 @@ export default function Navbar() {
           >
             {label === "Home" ? (
               <Image
-                src="/cycles-human.PNG"
+                src="/logo/cycles-human.PNG"
                 alt="Cycles Studios"
                 width={50}
                 height={36}
