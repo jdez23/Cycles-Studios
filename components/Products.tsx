@@ -81,7 +81,7 @@ function ProjectSection({
 
       {/* Main content grid */}
       <div
-        className={`relative z-20 mx-auto w-full max-w-[1120px] flex flex-col items-center md:grid md:items-center ${project.slug === "cycles" ? "md:min-h-[760px]" : "md:min-h-[840px]"} px-6 md:px-14 pb-16 md:pb-32 gap-8 ${desktopGap} mt-6 md:mt-60`}
+        className={`relative z-20 mx-auto w-full max-w-[1120px] flex flex-col items-center md:grid md:items-center ${project.slug === "cycles" ? "md:min-h-[760px]" : "md:min-h-[840px]"} px-6 md:px-14 pb-16 md:pb-32 gap-8 ${desktopGap} mt-6 md:mt-00`}
         style={{ gridTemplateColumns: "auto auto", justifyContent: "center" }}
       >
 
@@ -101,7 +101,7 @@ function ProjectSection({
             {project.name}
           </motion.h2>
 
-          <div className={`${isHighlightedTextSection ? "relative overflow-hidden" : "overflow-hidden"} w-full ${project.slug === "cycles" ? "max-w-[200px] md:max-w-none mx-auto md:mx-0" : ""}`}>
+          <div className={`${isHighlightedTextSection ? "relative overflow-hidden" : "overflow-hidden"} w-full ${project.slug === "cycles" ? "max-w-[220px] md:max-w-none mx-auto md:mx-0" : ""}`}>
             {isHighlightedTextSection && (
               <motion.div className="absolute inset-0" style={{ background: highlightBg }} />
             )}
