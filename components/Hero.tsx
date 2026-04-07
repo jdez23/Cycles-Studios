@@ -92,12 +92,24 @@ export default function Hero() {
       {/* Scroll cue */}
       <div
         ref={scrollCueRef}
-        className="absolute bottom-8 left-8 opacity-0 flex items-center gap-3"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 flex flex-col items-center gap-1"
       >
-        <span className="text-white/20 text-xs tracking-[0.2em] uppercase">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-white/10" />
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 22 22"
+          fill="none"
+          className="text-white/25 animate-bounce"
+          aria-hidden="true"
+        >
+          <path
+            d="M11 4v14M11 18l-5-5M11 18l5-5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </section>
   );

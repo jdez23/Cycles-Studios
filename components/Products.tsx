@@ -11,9 +11,9 @@ import { projects } from "@/lib/projects";
 import IMacFrame from "./IMacFrame";
 import BrowserChrome from "./BrowserChrome";
 
-export default function Work() {
+export default function Products() {
   return (
-    <section id="work">
+    <section id="products">
       {projects.map((project) => (
         <ProjectSection key={project.slug} project={project} />
       ))}
@@ -81,15 +81,14 @@ function ProjectSection({
 
       {/* Main content grid */}
       <div
-        className={`relative z-20 mx-auto w-full max-w-[1120px] flex flex-col items-center md:grid md:items-center ${project.slug === "cycles" ? "md:min-h-[640px]" : "md:min-h-[720px]"} px-6 md:px-14 pb-16 md:pb-28 gap-8 ${desktopGap} mt-6 md:mt-8`}
+        className={`relative z-20 mx-auto w-full max-w-[1120px] flex flex-col items-center md:grid md:items-center ${project.slug === "cycles" ? "md:min-h-[760px]" : "md:min-h-[840px]"} px-6 md:px-14 pb-16 md:pb-32 gap-8 ${desktopGap} mt-6 md:mt-60`}
         style={{ gridTemplateColumns: "auto auto", justifyContent: "center" }}
       >
 
         {/* ── A: Text column ────────────────────────────────────────── */}
         <div
-          className={`flex flex-col items-center md:items-start text-center md:text-left gap-5 md:gap-8 w-full max-w-sm md:max-w-[300px] md:self-center z-30${
-            project.slug === "midime" ? " md:order-last" : ""
-          }`}
+          className={`flex flex-col items-center md:items-start text-center md:text-left gap-5 md:gap-8 w-full max-w-sm md:max-w-[300px] md:self-center z-30${project.slug === "midime" ? " md:order-last" : ""
+            }`}
         >
           <motion.h2
             initial={{ x: -50, opacity: 0 }}
@@ -102,7 +101,7 @@ function ProjectSection({
             {project.name}
           </motion.h2>
 
-          <div className={`w-full ${isHighlightedTextSection ? "relative overflow-hidden" : "overflow-hidden"}`}>
+          <div className={`${isHighlightedTextSection ? "relative overflow-hidden" : "overflow-hidden"} w-full ${project.slug === "cycles" ? "max-w-[200px] md:max-w-none mx-auto md:mx-0" : ""}`}>
             {isHighlightedTextSection && (
               <motion.div className="absolute inset-0" style={{ background: highlightBg }} />
             )}
@@ -138,21 +137,23 @@ function ProjectSection({
           {/* Cycles: App Store badge — desktop only */}
           {project.slug === "cycles" && (
             <div className="hidden md:block max-w-[140px]">
-              <Image src="/applelogo.png" alt="Apple App Store badge" width={120} height={38} className="h-auto w-full object-contain" />
+              <a href="https://apps.apple.com/us/app/cycles-discover-playlists/id6446672039" target="_blank" rel="noopener noreferrer">
+                <Image src="/applelogo.png" alt="Apple App Store badge" width={120} height={38} className="h-auto w-full object-contain" />
+              </a>
             </div>
           )}
 
           {/* midime/elucia: View Website — desktop only */}
           {project.slug === "midime" && (
             <div className="hidden md:block">
-              <a href="#" className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-white/60 transition-colors duration-200 hover:border-white/60 hover:text-white">
+              <a href="https://midime.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-white/60 transition-colors duration-200 hover:border-white/60 hover:text-white">
                 View Website
               </a>
             </div>
           )}
           {project.slug === "elucia" && (
             <div className="hidden md:block">
-              <a href="#" className="inline-flex items-center justify-center rounded-full border border-black/25 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-black/50 transition-colors duration-200 hover:border-black/50 hover:text-black/80">
+              <a href="https://elucia.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-black/25 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-black/50 transition-colors duration-200 hover:border-black/50 hover:text-black/80">
                 View Website
               </a>
             </div>
@@ -182,8 +183,8 @@ function ProjectSection({
                   </IPhoneFrame>
                 </motion.div>
 
-                {/* Dots + counter — centered; mobile nav arrows are absolute on sides */}
-                <div className="relative flex items-center justify-center w-[260px]">
+                {/* Dots + counter — mobile only (desktop version is absolute at section bottom) */}
+                <div className="relative flex items-center justify-center w-[260px] md:hidden">
                   <button
                     onClick={prev}
                     aria-label="Previous slide"
@@ -219,7 +220,9 @@ function ProjectSection({
 
                 {/* Mobile-only: Apple badge below iPhone */}
                 <div className="md:hidden max-w-[120px]">
-                  <Image src="/applelogo.png" alt="Apple App Store badge" width={120} height={38} className="h-auto w-full object-contain" />
+                  <a href="https://apps.apple.com/us/app/cycles-discover-playlists/id6446672039" target="_blank" rel="noopener noreferrer">
+                    <Image src="/applelogo.png" alt="Apple App Store badge" width={120} height={38} className="h-auto w-full object-contain" />
+                  </a>
                 </div>
               </>
             ) : (
@@ -250,11 +253,11 @@ function ProjectSection({
         {(project.slug === "midime" || project.slug === "elucia") && (
           <div className="md:hidden flex justify-center w-full">
             {project.slug === "midime" ? (
-              <a href="#" className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-white/60 transition-colors duration-200 hover:border-white/60 hover:text-white">
+              <a href="https://midime.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-white/60 transition-colors duration-200 hover:border-white/60 hover:text-white">
                 View Website
               </a>
             ) : (
-              <a href="#" className="inline-flex items-center justify-center rounded-full border border-black/25 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-black/50 transition-colors duration-200 hover:border-black/50 hover:text-black/80">
+              <a href="https://elucia.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-black/25 px-6 py-3 text-[10px] tracking-[0.25em] uppercase text-black/50 transition-colors duration-200 hover:border-black/50 hover:text-black/80">
                 View Website
               </a>
             )}
@@ -262,6 +265,27 @@ function ProjectSection({
         )}
 
       </div>
+
+      {/* Desktop-only indicator bars + counter — Cycles only */}
+      {project.slug === "cycles" && (
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {project.slides.map((_, i) => (
+              <button key={i} onClick={() => setCurrent(i)} aria-label={`Go to slide ${i + 1}`} className="py-2 px-1">
+                <motion.div
+                  animate={{ height: i === current ? 10 : 6, width: i === current ? 20 : 6, opacity: i === current ? 1 : 0.2 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="h-px rounded-full"
+                  style={{ background: i === current ? accent : "black" }}
+                />
+              </button>
+            ))}
+          </div>
+          <span className="text-[9px] tracking-[0.2em] text-black/20 tabular-nums">
+            {String(current + 1).padStart(2, "0")} / {String(project.slides.length).padStart(2, "0")}
+          </span>
+        </div>
+      )}
 
       {/* Desktop-only carousel arrows — Cycles only */}
       {project.slug === "cycles" && (

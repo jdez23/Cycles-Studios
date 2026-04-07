@@ -7,9 +7,7 @@ export default function Footer() {
 
       <div className="flex items-center gap-6">
         {[
-          { label: "Instagram", href: "#" },
-          { label: "LinkedIn", href: "#" },
-          { label: "X", href: "#" },
+          { label: "Instagram", href: "https://www.instagram.com/cycles_studios/" },
         ].map((link) => (
           <a
             key={link.label}

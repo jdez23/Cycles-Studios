@@ -37,16 +37,16 @@ export default function Nav() {
 
       <div className="flex items-center gap-8">
         <a
-          href="#work"
+          href="#aboutme"
           className="text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors duration-300"
         >
-          Work
+          About Me
         </a>
         <a
-          href="#contact"
+          href="#products"
           className="text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors duration-300"
         >
-          Contact
+          Products
         </a>
       </div>
     </motion.nav>

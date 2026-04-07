@@ -10,6 +10,7 @@ export default function About() {
 
   return (
     <motion.section
+      id="aboutme"
       className="relative w-full pt-24 pb-20 px-6 md:pt-36 md:pb-28 md:px-16 border-t border-white/5 overflow-hidden flex items-center min-h-[560px] md:min-h-[680px] bg-black"
       onViewportEnter={() => setBurstTriggered(true)}
     >
@@ -47,16 +48,13 @@ export default function About() {
           className="flex flex-col gap-8 pt-4"
         >
           <p className="text-base text-white/70 leading-relaxed">
-            Cycles Studios is a creative agency operating at the intersection
+            Cycles Studios is a creative lab operating at the intersection
             of music and technology.
           </p>
           <p className="text-base text-white/50 leading-relaxed">
-            We build products, services, and experiences that give artists new
-            ways to create, connect, and be heard — combining craft with code
+            We build products, services, and experiences that give artists
+            ways to create, connect, and be heard. Combining culture with code
             to push what&apos;s possible in the music space.
-          </p>
-          <p className="text-sm text-white/30 leading-relaxed italic">
-            We believe the future of music is built.
           </p>
         </motion.div>
       </div>
