@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cycles Studios — Marketing Site
 
-## Getting Started
+Portfolio / marketing site for Cycles Studios, a creative agency operating at the intersection of music and technology. Showcases three products: Cycles (iOS playlist-sharing app), MiDiMe (music pattern analyzer), and Elucia (AI-assisted instrument learning).
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Layer | Technology |
+| ----- | ---------- |
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS 4 |
+| Animation | Framer Motion 12, GSAP 3 |
+| Runtime | React 19 |
+| Package manager | npm 11 |
+
+## Project structure
+
+```text
+app/
+  layout.tsx        Root layout — font, metadata
+  page.tsx          Single-page composition (Nav → Hero → About → Work → Footer)
+  globals.css       Tailwind theme tokens, base styles
+
+components/
+  Nav.tsx           Sticky navigation
+  Hero.tsx          Full-screen hero section
+  About.tsx         Agency bio with animated walking figures
+  Work.tsx          Project showcase grid — Cycles, MiDiMe, Elucia
+  Footer.tsx        Footer
+
+  # Mockup frames
+  IPhoneFrame.tsx   iPhone 15 Pro shell (SVG)
+  IMacFrame.tsx     iMac-style display shell
+  BrowserChrome.tsx Minimal macOS browser bar overlay
+
+  # Visual effects
+  Carousel.tsx      Full-screen slide carousel (Framer Motion)
+  WalkingFigures.tsx Canvas — scanline-rendered human silhouettes
+  CharacterHeatmap.tsx Canvas — ambient character particle field
+  WireframeGrid.tsx Canvas — perspective wireframe grid
+  PaintDrip.tsx     SVG paint-drip accent
+
+lib/
+  projects.ts       Project data — slugs, colors, slide content
+
+public/
+  applelogo.png     App Store badge
+  product/          Product screenshot PNGs (cycles1-3, midime, elucia)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # development server (Turbopack)
+npm run build    # production build
+npm run start    # serve production build
+npm run lint     # ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design tokens
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Defined in `app/globals.css` via Tailwind `@theme`:
 
-## Deploy on Vercel
+| Token | Value |
+| ----- | ----- |
+| `--color-background` | `#080808` |
+| `--color-surface` | `#111111` |
+| `--color-orange` | `#FF5C00` |
+| `--color-yellow` | `#FFD600` |
+| `--color-cyan` | `#00E5FF` |
+| `--font-sans` | `Futura, "Futura PT", "Arial Rounded MT Bold", sans-serif` |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding a project
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Add an entry to `lib/projects.ts` with a unique `slug`, `color`, and `slides` array.
+2. Drop a product screenshot at `public/product/<slug>.png`.
+3. The `Work` component renders all projects automatically.
