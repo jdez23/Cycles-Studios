@@ -2,6 +2,10 @@
 
 Portfolio / marketing site for Cycles Studios, a creative agency operating at the intersection of music and technology. Showcases three products: Cycles (iOS playlist-sharing app), MiDiMe (music pattern analyzer), and Elucia (AI-assisted instrument learning).
 
+<img width="1362" height="936" alt="Screenshot 2026-04-06 at 10 39 15 PM" src="https://github.com/user-attachments/assets/29068ebe-ae7b-4421-87b6-dfd6d9291d04" />
+
+<img width="1362" height="1229" alt="Screenshot 2026-04-06 at 10 40 16 PM" src="https://github.com/user-attachments/assets/846bbb8c-2385-4511-ad4f-f64d5ba8eef6" />
+
 ## Stack
 
 | Layer | Technology |
