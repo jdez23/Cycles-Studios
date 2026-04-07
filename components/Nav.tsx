@@ -24,7 +24,7 @@ export default function Nav() {
     >
       <div className="flex items-center gap-3">
         <Image
-          src="/cycles-human.PNG"
+          src="/cycles-human.png"
           alt="Cycles human logo"
           width={30}
           height={30}
