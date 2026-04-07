@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Carousel from "./Carousel";
@@ -37,6 +37,16 @@ function ProjectSection({
 
   const prev = () => { setDirection(-1); setCurrent((c) => (c - 1 + project.slides.length) % project.slides.length); };
   const next = () => { setDirection(1); setCurrent((c) => (c + 1) % project.slides.length); };
+
+  const touchStartX = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 40) next();
+    else if (diff < -40) prev();
+    touchStartX.current = null;
+  };
 
   const accent = project.color;
   const isLightSection = project.slug === "cycles" || project.slug === "elucia";
@@ -171,7 +181,48 @@ function ProjectSection({
           >
             {project.slug === "cycles" ? (
               <>
-                <motion.div className="relative" initial="rest" whileHover="hover" animate="rest">
+                {/* Mobile: [←] [scaled phone] [→] in a row */}
+                <div className="flex items-center justify-center gap-3 md:hidden">
+                  <button
+                    onClick={prev}
+                    aria-label="Previous slide"
+                    className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full bg-black/[0.07] hover:bg-black/[0.13] transition-colors duration-200"
+                  >
+                    <span className="text-black/60 text-sm leading-none">←</span>
+                  </button>
+
+                  {/* Scaled-down phone: 260 * 0.72 ≈ 187px wide */}
+                  <div
+                    style={{ width: 187, height: 406, position: "relative", flexShrink: 0 }}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                  >
+                    <div style={{ transform: "scale(0.72)", transformOrigin: "top left", position: "absolute" }}>
+                      <motion.div className="relative" initial="rest" whileHover="hover" animate="rest">
+                        <motion.div
+                          variants={{ rest: { opacity: 0, scaleX: 0.7 }, hover: { opacity: 1, scaleX: 1 } }}
+                          transition={{ duration: 0.35 }}
+                          className="absolute -bottom-5 inset-x-[8%] h-10 blur-2xl rounded-full pointer-events-none"
+                          style={{ background: accent }}
+                        />
+                        <IPhoneFrame accentColor={accent}>
+                          <Carousel slides={project.slides} accentColor={accent} value={current} direction={direction} />
+                        </IPhoneFrame>
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={next}
+                    aria-label="Next slide"
+                    className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full bg-black/[0.07] hover:bg-black/[0.13] transition-colors duration-200"
+                  >
+                    <span className="text-black/60 text-sm leading-none">→</span>
+                  </button>
+                </div>
+
+                {/* Desktop: full-size phone */}
+                <motion.div className="relative hidden md:block" initial="rest" whileHover="hover" animate="rest">
                   <motion.div
                     variants={{ rest: { opacity: 0, scaleX: 0.7 }, hover: { opacity: 1, scaleX: 1 } }}
                     transition={{ duration: 0.35 }}
@@ -183,39 +234,23 @@ function ProjectSection({
                   </IPhoneFrame>
                 </motion.div>
 
-                {/* Dots + counter — mobile only (desktop version is absolute at section bottom) */}
-                <div className="relative flex items-center justify-center w-[260px] md:hidden">
-                  <button
-                    onClick={prev}
-                    aria-label="Previous slide"
-                    className="md:hidden absolute left-0 w-7 h-7 flex items-center justify-center rounded-full bg-black/[0.07] hover:bg-black/[0.13] transition-colors duration-200"
-                  >
-                    <span className="text-black/60 text-xs leading-none">←</span>
-                  </button>
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2">
-                      {project.slides.map((_, i) => (
-                        <button key={i} onClick={() => setCurrent(i)} aria-label={`Go to slide ${i + 1}`} className="py-2 px-1">
-                          <motion.div
-                            animate={{ width: i === current ? 20 : 6, opacity: i === current ? 1 : 0.2 }}
-                            transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="h-px rounded-full"
-                            style={{ background: i === current ? accent : "black" }}
-                          />
-                        </button>
-                      ))}
-                    </div>
-                    <span className="text-[9px] tracking-[0.2em] text-black/20 tabular-nums">
-                      {String(current + 1).padStart(2, "0")} / {String(project.slides.length).padStart(2, "0")}
-                    </span>
+                {/* Dots + counter — mobile only */}
+                <div className="flex items-center justify-center gap-3 md:hidden">
+                  <div className="flex items-center gap-2">
+                    {project.slides.map((_, i) => (
+                      <button key={i} onClick={() => setCurrent(i)} aria-label={`Go to slide ${i + 1}`} className="py-2 px-1">
+                        <motion.div
+                          animate={{ width: i === current ? 20 : 6, opacity: i === current ? 1 : 0.2 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                          className="h-px rounded-full"
+                          style={{ background: i === current ? accent : "black" }}
+                        />
+                      </button>
+                    ))}
                   </div>
-                  <button
-                    onClick={next}
-                    aria-label="Next slide"
-                    className="md:hidden absolute right-0 w-7 h-7 flex items-center justify-center rounded-full bg-black/[0.07] hover:bg-black/[0.13] transition-colors duration-200"
-                  >
-                    <span className="text-black/60 text-xs leading-none">→</span>
-                  </button>
+                  <span className="text-[9px] tracking-[0.2em] text-black/20 tabular-nums">
+                    {String(current + 1).padStart(2, "0")} / {String(project.slides.length).padStart(2, "0")}
+                  </span>
                 </div>
 
                 {/* Mobile-only: Apple badge below iPhone */}
